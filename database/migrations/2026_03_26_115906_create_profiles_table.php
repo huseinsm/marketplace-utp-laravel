@@ -15,8 +15,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('address');
             $table->string('phone');
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at');
+            $table->timestamps();
 
         });
     }

@@ -3,16 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use User;
 
 class Profiles extends Model
 {
     protected $fillable = [
-        'id',
         'user_id',
         'name',
         'address',
         'phone',
-        'created_at',
-        'updated_at'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(Users::class, 'user_id');
+    }
 }

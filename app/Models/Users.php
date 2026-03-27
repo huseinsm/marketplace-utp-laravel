@@ -7,12 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Users extends Model
 {
     protected $fillable = [
-        'id',
         'name',
         'email',
         'password',
-        'created_at',
-        'updated_at',
         'role',
     ];
+
+    protected $hidden = ['password'];
+    public function profiles()
+    {
+        return $this->hasOne(Profiles::class, 'user_id');
+    }
 }
