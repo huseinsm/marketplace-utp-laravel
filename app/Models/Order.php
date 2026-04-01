@@ -5,20 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Order extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
-        'name',
-        'price',
-        'stock',
+        'total_price',
     ];
 
     protected $casts = [
-        'price' => 'decimal:2',
-        'stock'  => 'integer',
+        'total_price' => 'decimal:2',
     ];
 
     public function user()
