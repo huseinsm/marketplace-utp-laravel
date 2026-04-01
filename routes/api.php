@@ -9,6 +9,7 @@ Route::middleware([CheckCategoryRequest::class])->group(function () {
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::post('/categories', [CategoryController::class, 'store']);
     Route::get('/categories/{id}', [CategoryController::class, 'show']);
+});
 
 Route::prefix('users')->group(function () {
     Route::post('/', [UsersController::class, 'createUsers']);
