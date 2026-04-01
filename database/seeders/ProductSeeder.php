@@ -2,21 +2,33 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Product;
+use App\Models\User;
+use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
 {
     public function run(): void
     {
+        $user = User::first();
+
+        if (!$user) {
+            $this->command->warn('Tidak ada user, skip ProductSeeder.');
+            return;
+        }
+
         $products = [
-            ['user_id' => 1, 'name' => 'Sepatu Murah', 'price' => 50000, 'stock' => 10],
-            ['user_id' => 1, 'name' => 'Baju Baru', 'price' => 75000, 'stock' => 20],
-            ['user_id' => 1, 'name' => 'Tas Keren', 'price' => 120000, 'stock' => 5],
+            ['name' => 'Laptop Gaming ASUS ROG',    'price' => 15000000, 'stock' => 10],
+            ['name' => 'Mouse Wireless Logitech',   'price' => 350000,   'stock' => 50],
+            ['name' => 'Keyboard Mechanical Rexus', 'price' => 700000,   'stock' => 30],
+            ['name' => 'Monitor LG 24 inch',        'price' => 2500000,  'stock' => 15],
+            ['name' => 'Headset Gaming HyperX',     'price' => 1200000,  'stock' => 20],
         ];
 
         foreach ($products as $product) {
-            Product::create($product);
+            Product::create(array_merge($product, ['user_id' => $user->id]));
         }
+
+        $this->command->info('ProductSeeder selesai: ' . count($products) . ' produk ditambahkan.');
     }
 }
