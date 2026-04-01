@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Middleware\CheckCategoryRequest;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ProfilesController;
 
 Route::middleware([CheckCategoryRequest::class])->group(function () {
     Route::get('/categories', [CategoryController::class, 'index']);
