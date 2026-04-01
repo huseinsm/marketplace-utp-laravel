@@ -1,4 +1,4 @@
-<?php
+use App\Http\Controllers\ProductController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,3 +25,7 @@ Route::prefix('profiles')->group(function () {
     Route::get('/users', [ProfilesController::class, 'getUsersWithProfiles']);
     Route::get('/{id}', [ProfilesController::class, 'getProfilesById']);
 });
+
+Route::post('/products', [ProductController::class, 'store']);
+Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products/{id}', [ProductController::class, 'show']);
