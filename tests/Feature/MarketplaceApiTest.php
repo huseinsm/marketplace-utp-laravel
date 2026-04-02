@@ -21,8 +21,6 @@ function createUser(array $overrides = []): User
     ], $overrides));
 }
 
-// Anggota 1 - Modul User & Profile
-
 test('post users creates new user', function () {
     $payload = [
         'name' => 'Budi',
@@ -133,8 +131,6 @@ test('get users with profiles returns relation data', function () {
         ]);
 });
 
-// Anggota 2 - Modul Product
-
 test('post products creates product', function () {
     $user = createUser(['email' => 'product-create@example.com']);
 
@@ -185,8 +181,6 @@ test('get product by id returns detail', function () {
         ->assertJsonPath('data.id', $product->id);
 });
 
-// Anggota 3 - Modul Category
-
 test('post categories creates category', function () {
     $response = $this->postJson('/api/categories', [
         'name' => 'Fashion',
@@ -220,8 +214,6 @@ test('post categories without name is blocked by middleware', function () {
     $response->assertStatus(400)
         ->assertJsonPath('message', 'Nama kategori wajib diisi!');
 });
-
-// Anggota 4 - Modul Order & OrderItem
 
 test('post orders creates order with items', function () {
     $user = createUser(['email' => 'order-create@example.com']);
@@ -278,8 +270,6 @@ test('get order by id returns detail', function () {
         ->assertJsonPath('success', true)
         ->assertJsonPath('data.id', $order->id);
 });
-
-// Anggota 5 - Modul Tag & ProductTag
 
 test('post tags creates tag', function () {
     $response = $this->postJson('/api/tags', [
