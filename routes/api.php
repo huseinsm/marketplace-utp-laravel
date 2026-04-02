@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ProfilesController;
+use App\Http\Controllers\TagController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,4 +34,12 @@ Route::prefix('profiles')->group(function () {
 
 Route::post('/products', [ProductController::class, 'store']);
 Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/{id}', [ProductController::class, 'show']);
+Route::get('/products/{id}', [TagController::class, 'showProduct']); // ANGGOTA 5
+
+Route::post('/orders', [OrderController::class, 'store']);
+Route::get('/orders', [OrderController::class, 'index']);
+Route::get('/orders/{id}', [OrderController::class, 'show']);
+
+// ANGGOTA 5 - Modul Tag & ProductTag
+Route::post('/tags', [TagController::class, 'store']);
+Route::put('/products/{id}/tag/{tagId}', [TagController::class, 'attachTag']);

@@ -10,7 +10,6 @@ class ProductSeeder extends Seeder
 {
     public function run(): void
     {
-        // Pastikan ada user dulu sebelum seed product
         $user = User::first();
 
         if (!$user) {
@@ -19,11 +18,11 @@ class ProductSeeder extends Seeder
         }
 
         $products = [
-            ['name' => 'Laptop Gaming ASUS ROG', 'price' => 15000000, 'stock' => 10],
-            ['name' => 'Mouse Wireless Logitech', 'price' => 350000,   'stock' => 50],
-            ['name' => 'Keyboard Mechanical Rexus', 'price' => 700000, 'stock' => 30],
-            ['name' => 'Monitor LG 24 inch',        'price' => 2500000,'stock' => 15],
-            ['name' => 'Headset Gaming HyperX',     'price' => 1200000,'stock' => 20],
+            ['name' => 'Laptop Gaming ASUS ROG',    'price' => 15000000, 'stock' => 10],
+            ['name' => 'Mouse Wireless Logitech',   'price' => 350000,   'stock' => 50],
+            ['name' => 'Keyboard Mechanical Rexus', 'price' => 700000,   'stock' => 30],
+            ['name' => 'Monitor LG 24 inch',        'price' => 2500000,  'stock' => 15],
+            ['name' => 'Headset Gaming HyperX',     'price' => 1200000,  'stock' => 20],
         ];
 
         foreach ($products as $product) {
