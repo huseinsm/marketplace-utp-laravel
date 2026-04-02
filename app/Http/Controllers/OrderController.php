@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Models\OrderItem;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 class OrderController extends Controller
 {
+    /**
+     * POST /api/orders: Membuat order baru
+     */
     public function store(Request $request): JsonResponse
     {
         try {
@@ -65,6 +67,9 @@ class OrderController extends Controller
         }
     }
 
+    /**
+     * GET /api/orders: Memuat seluruh daftar order
+     */
     public function index(): JsonResponse
     {
         $orders = Order::with(['user', 'orderItems.product'])->latest()->get();
@@ -76,11 +81,14 @@ class OrderController extends Controller
         ], 200);
     }
 
+    /**
+     * GET /api/orders/{id}: Memuat seluruh daftar order secara spesifik menggunakan order_id
+     */
     public function show(int $id): JsonResponse
     {
         $order = Order::with(['user', 'orderItems.product'])->find($id);
 
-        if (!$order) {
+        if (! $order) {
             return response()->json([
                 'success' => false,
                 'message' => 'Order tidak ditemukan.',
