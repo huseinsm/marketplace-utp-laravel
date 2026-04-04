@@ -1,0 +1,5 @@
+bc163dd HEAD@{0}: commit: fixing migrate
+d43a930 HEAD@{1}: pull: Fast-forward
+75fdc36 HEAD@{2}: commit: Mengembalikan file profile dan user dari branch fitur-septian
+d7b9fb6 HEAD@{3}: checkout: moving from fitur-septian to main
+0ce4b6a HEAD@{4}: checkout: moving from main to fitur-septian

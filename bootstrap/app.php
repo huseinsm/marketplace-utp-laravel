@@ -14,6 +14,8 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'check.category' => \App\Http\Middleware\CheckCategoryRequest::class,
+            'check.user' => \App\Http\Middleware\CheckUserRequest::class,
+            'check.profile' => \App\Http\Middleware\CheckProfileRequest::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
