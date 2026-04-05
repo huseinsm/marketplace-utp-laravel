@@ -12,6 +12,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Middleware\CheckUserRequest;
 use App\Http\Middleware\CheckProfileRequest;
+use App\Http\Middleware\CheckOrderRequest;
 
 Route::middleware([CheckCategoryRequest::class])->group(function () {
     Route::get('/categories', [CategoryController::class, 'index']);
@@ -36,9 +37,11 @@ Route::post('/products', [ProductController::class, 'store']);
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{id}', [TagController::class, 'showProduct']); // ANGGOTA 5
 
-Route::post('/orders', [OrderController::class, 'store']);
-Route::get('/orders', [OrderController::class, 'index']);
-Route::get('/orders/{id}', [OrderController::class, 'show']);
+Route::middleware([CheckOrderRequest::class])->group(function () {
+    Route::post('/orders', [OrderController::class, 'store']);
+    Route::get('/orders', [OrderController::class, 'index']);
+    Route::get('/orders/{id}', [OrderController::class, 'show']);
+});
 
 // ANGGOTA 5 - Modul Tag & ProductTag
 Route::post('/tags', [TagController::class, 'store']);
