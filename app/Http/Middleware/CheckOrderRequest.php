@@ -31,7 +31,6 @@ class CheckOrderRequest
                 ], 400);
             }
 
-            // Validasi setiap item harus punya quantity > 0
             foreach ($request->input('items') as $index => $item) {
                 if (!isset($item['quantity']) || $item['quantity'] < 1) {
                     return response()->json([
@@ -42,7 +41,6 @@ class CheckOrderRequest
             }
         }
 
-        // Validasi GET dengan parameter {id}: pastikan id berupa angka
         if ($request->route('id') && !is_numeric($request->route('id'))) {
             return response()->json([
                 'success' => false,

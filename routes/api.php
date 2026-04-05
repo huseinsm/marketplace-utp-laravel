@@ -35,7 +35,7 @@ Route::middleware([CheckProfileRequest::class])->prefix('profiles')->group(funct
 
 Route::post('/products', [ProductController::class, 'store']);
 Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/{id}', [TagController::class, 'showProduct']); // ANGGOTA 5
+Route::get('/products/{id}', [TagController::class, 'showProduct']);
 
 Route::middleware([CheckOrderRequest::class])->group(function () {
     Route::post('/orders', [OrderController::class, 'store']);
