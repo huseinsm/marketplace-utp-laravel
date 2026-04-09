@@ -13,6 +13,7 @@ use App\Http\Controllers\ProfilesController;
 use App\Http\Middleware\CheckUserRequest;
 use App\Http\Middleware\CheckProfileRequest;
 use App\Http\Middleware\CheckOrderRequest;
+use App\Http\Middleware\CheckProductRequest;
 
 Route::middleware([CheckCategoryRequest::class])->group(function () {
     Route::get('/categories', [CategoryController::class, 'index']);
@@ -33,9 +34,11 @@ Route::middleware([CheckProfileRequest::class])->prefix('profiles')->group(funct
     Route::get('/{id}', [ProfilesController::class, 'getProfilesById']);
 });
 
-Route::post('/products', [ProductController::class, 'store']);
-Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/{id}', [TagController::class, 'showProduct']);
+Route::middleware([CheckProductRequest::class])->group(function () {
+    Route::post('/products', [ProductController::class, 'store']);
+    Route::get('/products', [ProductController::class, 'index']);
+    Route::get('/products/{id}', [ProductController::class, 'show']);
+});
 
 Route::middleware([CheckOrderRequest::class])->group(function () {
     Route::post('/orders', [OrderController::class, 'store']);
